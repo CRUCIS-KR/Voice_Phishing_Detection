@@ -9,7 +9,7 @@ import torch
 from torch.utils.data import Dataset, DataLoader
 
 # KoBERT_GRU_LM
-from lstm import KoBERT_LSTM_LM
+from model import KoBERT_GRU_LM
 
 # KoBERT 토크나이저 호출 라이브러리
 from transformers import AutoTokenizer
@@ -112,7 +112,7 @@ def test():
     )
 
     # 사용 모델 정의
-    model = KoBERT_LSTM_LM(
+    model = KoBERT_GRU_LM(
         hidden_size=HIDDEN_SIZE,
         classes=len(CLASS),
         freeze=FREEZE,
