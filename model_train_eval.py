@@ -21,9 +21,9 @@ from model import KoBERT_GRU_LM
 from transformers import AutoTokenizer
 
 # 하이퍼 파라미터
-TRAIN_PATH = "your train data path"  # 학습 데이터 경로 (수정 필요)
-VAL_PATH = "your validation data path"  # 평가 데이터 경로 (수정 필요)
-RESULT_PATH = "./VPDM"
+TRAIN_PATH = ""  # 학습 데이터 경로 (수정 필요)
+VAL_PATH = ""  # 평가 데이터 경로 (수정 필요)
+RESULT_PATH = "./VPDM"  # 결과 저장 경로
 CLASS = {"normal": 0, "phishing": 1}  # 클래스 분류
 INDEX_TO_CLASS = {v: k for k, v in CLASS.items()}  # 인덱스-클래스 매핑
 MODEL = "skt/kobert-base-v1"  # KoBERT 사용 모델
@@ -36,9 +36,9 @@ LR = 1e-5  # 학습률
 WEIGHT_DECAY = 0.02  # 가중치 감쇠
 EPOCHS = 50  # 학습 횟수
 BATCH_SIZE = 64  # 배치 크기
-STOP = 3  # 조기 종료 기준
+STOP = 50  # 조기 종료 기준
 
-# 사전 학습된 KoBERT 모델의 토큰나이저 로드, fast 토크나이저 사용이 불가능하면 slow로 사용 (에러 방지)
+# 사용 KoBERT 모델의 토큰나이저 로드, fast 토크나이저 사용이 불가능하면 slow로 사용 (에러 방지)
 try:
     tokenizer = AutoTokenizer.from_pretrained(MODEL, use_fast=True)
 except Exception:
@@ -361,5 +361,6 @@ def train():
     plt.close()
 
 
+# 실행
 if __name__ == "__main__":
     train()
